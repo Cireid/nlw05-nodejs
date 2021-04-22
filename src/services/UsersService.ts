@@ -5,10 +5,14 @@ import { UsersRepository } from "../repositories/UsersRepository"
 
 class UsersSerivce{
 
-    async create(email: string){
-        const usersRepository = getCustomRepository(UsersRepository);
+    private usersRepository: UsersRepository;
 
-        const userExist = await usersRepository.findOne({
+    constructor(){
+        this.usersRepository = getCustomRepository(UsersRepository)
+    }
+
+    async create(email: string){
+        const userExist = await this.usersRepository.findOne({
             email
         })
 
@@ -16,11 +20,16 @@ class UsersSerivce{
             return userExist
         }
 
-        const user = usersRepository.create({
+        const user = this.usersRepository.create({
             email
         });
 
-        await usersRepository.save(user);
+        await this.usersRepository.save(user);
+        return user;
+    }
+
+    async findByEmail(email: string){
+        const user = await this.usersRepository.findOne(email);
 
         return user;
     }

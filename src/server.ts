@@ -1,12 +1,7 @@
-import express from "express"
-import "./database"
+import { http } from "./http"
+import "./websocket/client"
 
-import {routes} from "./routes"
 
-const app = express();
+http.listen(3000, () => console.log("Servidor tá rodando na porta 3000"));
 
-app.use(express.json());
 
-app.use(routes);
-
-app.listen(3000, () => console.log("Servidor tá rodando na porta 3000"));
