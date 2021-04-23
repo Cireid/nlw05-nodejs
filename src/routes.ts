@@ -1,23 +1,22 @@
-import { request, response, Router } from "express";
-import { SettingsController } from "./controllers/SettingsController"
-import { UsersController } from "./controllers/UsersController";
-import { MessageController } from "./controllers/MessagesController";
+import { Router } from 'express';
+
+import { SettingsController } from './controllers/SettingsController';
+import { UsersController } from './controllers/UsersController';
+import { MessagesController } from './controllers/MessagesController';
 
 const routes = Router();
 
 const settingsController = new SettingsController();
 const usersController = new UsersController();
-const messageController = new MessageController();
+const messagesController = new MessagesController();
 
-routes.post("/settings", settingsController.create);
-routes.get("/settings/:username", settingsController.findByUserName);
-routes.put("/settings/:username", settingsController.update);
+routes.post('/settings', settingsController.create);
+routes.get('/settings/:username', settingsController.findByUsername);
+routes.put('/settings/:username', settingsController.update);
 
-routes.post("/users", usersController.create);
+routes.post('/users', usersController.create);
 
-routes.post("/message", messageController.create);
+routes.post('/messages', messagesController.create);
+routes.get('/messages/:id', messagesController.showByUser);
 
-routes.get("/message/:id", messageController.showUser);
-
-
-export{routes}
+export { routes };

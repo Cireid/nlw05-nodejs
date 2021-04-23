@@ -1,7 +1,5 @@
-import { http } from "./http"
-import "./websocket/client"
+import { http } from './http';
+import './websocket/client';
+import './websocket/admin';
 
-
-http.listen(3000, () => console.log("Servidor tá rodando na porta 3000"));
-
-
+http.listen(3333, () => console.log('Server started on 3333'));
